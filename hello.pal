@@ -1,0 +1,14 @@
+*200
+	jmp start
+/ hello,	.+1; 'Hello, World!'; 13d; 10d; 0
+hello,	.+1; "H; "e; "l; "l; "o; ",; " ; "W; "o; "r; "l; "d; "!; 15; 12; 0
+start,	cla		/ Load next byte into AC
+	tad I hello
+	sna		/ Check for NUL
+	jmp .		/ Spin forever when done
+	tad (-200)
+	tls		/ Clear flag and send byte: TCF + TPC
+	tsf		/ Wait for byte to be sent
+	jmp .-1
+	isz hello
+	jmp start

@@ -1,0 +1,27 @@
+	.org 200
+	JMP	start
+index:	DS	1
+dummy:	DS	1
+col:	DS	1
+row:	DS	1
+start:
+	CLA
+	TAD	[0001]
+	DCA	col
+	DCA	row
+	TAD	[7777]
+	DCA	[row]
+	ISZ	row
+	TAD	row
+	CIA
+	TAD	[342]
+
+	JMS	incr
+incr:
+	0
+	# Load col into accumulator while leaving link clear
+	CLA CLL
+	TAD	col
+	RAL
+	SNL
+	JMP	[incr]
