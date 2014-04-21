@@ -1,21 +1,68 @@
-*200
-	jmp	start
+mul=7405
+div=7407
+*0
+	jmp	(200)
+
+*10
 index,	0
+
+*200
+	cla
+	tad	(hello)
+	jms	prntln
+	cla
+	tad	(name)
+	jms	prntln
+	decimal
+	cla
+	tad	(123)
+	jms	prntnum
+	cla
+	tad	(0)
+	jms	prntnum
+	cla
+	tad	(4095)
+	jms	prntnum
+	cla
+	tad	(7)
+	jms	prntnum
+	cla
+	tad	(12)
+	jms	prntnum
+	octal
+	cla
+	tad	(hello)
+	jms	prntln
+	hlt
+	jmp	start
+hello,	"H; "e; "l; "l; "o; ",; " ; "W; "o; "r; "l; "d; "!; 15; 12; 0
+name,	"W; "h; "a; "t; " ; "i; "s; " ; "y; "o; "u; "r; " ; "n; "a; "m; "e; "?; 15; 12; 0
 dummy,	0
 col,	0001
-row,	0
+row,	primes
 start,
 	/cla
 	/tad	(0001)
 	/dca	col
 	/dca	row
 	/tad	[7777]
-	/dca	I row
+	/dca I	row
 	/isz	row
 	/tad	row
 	/cia			/ two's complement AC
 	/tad	[342]
 
+	cla
+	tad I	row
+	and	col
+	sna
+	jmp next
+
+	/ This is prime
+	/ print it and mark multiples as non-prime
+	/jmp	prntnum
+
+next,
 	jms	incr
 incr,
 	0
@@ -24,9 +71,43 @@ incr,
 	tad	col
 	ral
 	snl
-	jmp	I incr
+	jmp I	incr
+
+
+prntbuf, 0; 0; 0; 0; 15; 12; 0
+prntnum,	0
+	mql
+	div; 12
+	tad	("0)
+	dca	prntbuf+3
+	div; 12
+	tad	("0)
+	dca	prntbuf+2
+	div; 12
+	tad	("0)
+	dca	prntbuf+1
+	mqa
+	tad	("0)
+	dca	prntbuf+0
+	tad	(prntbuf)
+	jms	prntln
+	jmp I	prntnum
+
+prntln, 0
+	tad	(-1)
+	dca	index
+pl1,
+	tad I 	index	/ Load next character with auto-increment
+	sna		/ Check for NUL
+	jmp I	prntln	/ Return from subroutine
+	tls		/ Clear flag and send byte: TCF + TPC
+	tsf		/ Wait for byte to be sent
+	jmp	.-1
+	cla
+	jmp	pl1
 
 *400
+primes,
 	7774
 	7777
 	7777
@@ -369,4 +450,5 @@ incr,
 	7777
 	7777
 	7777
+end,
 $
