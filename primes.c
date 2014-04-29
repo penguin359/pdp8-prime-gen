@@ -15,7 +15,8 @@ int main()
 		val = primes[i/8] & (1 << (i%8));
 		/* If i is a prime, mark all multiples of it as not a prime */
 		if(val) {
-			printf("%4d\n", i);
+			//printf("%4d\n", i);
+			printf("%d\n", i);
 			for(j = (i << 1); j < 4096; j += i)
 				primes[j/8] &= ~(1 << (j%8));
 		}
