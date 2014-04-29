@@ -2,4 +2,6 @@ language: c
 compiler:
     - gcc
     - clang
-script: ${CC} -g -O3 -Wall -Werror -o primes primes.c && ./primes | diff - primes-ref
+before_install: sudo apt-get update
+install: sudo apt-get install simh
+script: ${CC} -g -O3 -Wall -Werror -o primes primes.c && ./primes | diff - primes-ref && ./primes.sh > primes-pdp-out && diff primes-pdp-out primes-ref
