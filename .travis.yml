@@ -1,0 +1,5 @@
+language: c
+compiler:
+    - gcc
+    - clang
+script: gcc -g -O3 -Wall -Werror -o primes primes.c && ./primes | diff - primes-ref
