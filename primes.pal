@@ -138,21 +138,35 @@ incrcol,
 
 PAGE
 prntbuf, 0; 0; 0; 0; 15; 12; 0
+prntidx, 0
 prntnum,	0
 	mql
+	dca	prntidx		/ Clear index to zero
 	div; 12
 	tad	("0)
 	dca	prntbuf+3
+	mqa
+	sza
+	isz	prntidx
+	cla
 	div; 12
 	tad	("0)
 	dca	prntbuf+2
+	mqa
+	sza
+	isz	prntidx
+	cla
 	div; 12
 	tad	("0)
 	dca	prntbuf+1
 	mqa
+	sza
+	isz	prntidx
 	tad	("0)
 	dca	prntbuf+0
-	tad	(prntbuf)
+	tad	prntidx
+	cia
+	tad	(prntbuf+3)
 	jms	prntln
 	jmp I	prntnum
 
