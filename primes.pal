@@ -43,7 +43,7 @@ colsav,	0
 rowsav,	0
 num,	0
 multi,	0
-count,	-20
+count,	0
 start,
 	/cla
 	/tad	(0001)
@@ -56,7 +56,7 @@ start,
 	/cia			/ two's complement AC
 	/tad	[342]
 
-next,
+nxtnum,
 	cla
 	tad I	row
 	and	col
@@ -78,20 +78,29 @@ next,
 
 	tad	num
 	dca	multi
+rstrtmu,
 	tad	num
 	cia			/ two's complement AC
-	/dca	count
+	dca	count
 
+nxtcnt,
+	/ Search through word space until multi wraps back to zero
 	jms	incr
 	isz	multi
-	jmp	nextmu
+	jmp	chkmlt
 	jmp	final		/ Overflow back to zero while searching for multi
-nextmu,
-	/isz	count
+	/ Check if this number is a multiple
+chkmlt,
+	isz	count
+	jmp	nxtcnt		/ Nope, skip to next number
+	tad	col		/ Yes, mark it as non-prime
+	cma
+	and I	row
+	dca I	row
+	jmp	rstrtmu
 
 final,
 	/ Restore original row/col
-	cla
 	tad	colsav
 	dca	col
 	tad	rowsav
@@ -100,8 +109,8 @@ final,
 noprint,
 	jms	incr
 	isz	num
-	isz	count
-	jmp	next
+	/isz	count
+	jmp	nxtnum
 	hlt
 
 incr,
@@ -153,8 +162,8 @@ pl1,
 
 *600
 primes,
-	4254
-	0252
+	7774
+	7777
 	7777
 	7777
 	7777
