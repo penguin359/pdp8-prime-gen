@@ -4,4 +4,4 @@ compiler:
     - clang
 before_install: sudo apt-get update
 install: sudo apt-get install simh
-script: ${CC} -g -O3 -Wall -Werror -o primes primes.c && ./primes | diff - primes-ref && sh ./primes.sh | tr -d '\r' > primes-pdp-out && diff primes-pdp-out primes-ref
+script: ${CC} -g -O3 -Wall -Werror -o primes primes.c && ./primes | diff - primes-ref && sh ./primes.sh | tr -d '\r' | awk 'BEGIN {P=0} /^END$/ {P=0} P==1 {print} /^BEGIN$/ {P=1}' > primes-pdp-out && diff primes-pdp-out primes-ref

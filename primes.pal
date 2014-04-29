@@ -11,33 +11,27 @@ init,
 	cla
 	tad	(hello)
 	jms	prntln
-	cla
 	tad	(name)
 	jms	prntln
 	decimal
-	cla
 	tad	(123)
 	jms	prntnum
-	cla
 	tad	(0)
 	jms	prntnum
-	cla
 	tad	(4095)
 	jms	prntnum
-	cla
 	tad	(7)
 	jms	prntnum
-	cla
 	tad	(12)
 	jms	prntnum
 	octal
-	cla
 	tad	(hello)
 	jms	prntln
-	/hlt
 	jmp	start
 hello,	"H; "e; "l; "l; "o; ",; " ; "W; "o; "r; "l; "d; "!; 15; 12; 0
 name,	"W; "h; "a; "t; " ; "i; "s; " ; "y; "o; "u; "r; " ; "n; "a; "m; "e; "?; 15; 12; 0
+bgnstr,	"B; "E; "G; "I; "N; 15; 12; 0
+endstr,	"E; "N; "D; 15; 12; 0
 PAGE
 col,	0
 row,	0
@@ -47,6 +41,8 @@ num,	0
 multi,	0
 count,	0
 start,
+	tad	(bgnstr)
+	jms	prntln
 	cla
 	tad	(0001)
 	dca	col
@@ -121,8 +117,9 @@ final,
 noprint,
 	jms	incr
 	isz	num
-	/isz	count
 	jmp	nxtnum
+	tad	(endstr)
+	jms	prntln
 	hlt
 
 incr,
