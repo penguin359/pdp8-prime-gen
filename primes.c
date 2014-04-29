@@ -20,4 +20,6 @@ int main()
 				primes[j/8] &= ~(1 << (j%8));
 		}
 	}
+
+	return 0;
 }
