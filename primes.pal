@@ -39,7 +39,7 @@ init,
 	tad	(nl)
 	jms	prntln
 	jmp	start
-short,	text	/@ABCD[\]^_ !"#<=>?/
+short,	text	/-ABCD[\]^_ !"#<=>?/
 short2,	text	/MY FIRST SHORT/
 nl,	15; 12; 0
 hello,	"H; "e; "l; "l; "o; ",; " ; "W; "o; "r; "l; "d; "!; 15; 12; 0
@@ -204,12 +204,12 @@ ps1,
 	tad I 	index	/ Load next character with auto-increment
 	dca	tmp
 	tad	tmp
+	bsw
 	and	(0077)
 	sna
 	jmp I	prntsh
 	jms	prntch
 	tad	tmp
-	bsw
 	and	(0077)
 	sna
 	jmp I	prntsh

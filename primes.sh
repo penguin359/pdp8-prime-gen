@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cd $(dirname $0)
 macro8x -d primes.pal
 ret=$?
 if [ $ret -ne 0 ]; then
