@@ -229,4 +229,10 @@ prntch,	0
 
 PAGE
 primes,
+
+/ Load the reset address and replace the RIM loop with a jmp to reset
+*7777
+reset,	init
+*7776
+	jmp I	reset
 $
