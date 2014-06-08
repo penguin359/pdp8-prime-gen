@@ -10,3 +10,4 @@ if [ $ret -ne 0 ]; then
 fi
 pdp8 hi.cmd
 macro8x -d -r hi.pal
+./rim2coe hi.rim hi.coe

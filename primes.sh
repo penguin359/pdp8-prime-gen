@@ -10,3 +10,4 @@ if [ $ret -ne 0 ]; then
 fi
 pdp8 primes.cmd
 macro8x -d -r primes.pal
+./rim2coe primes.rim primes.coe

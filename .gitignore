@@ -1,6 +1,8 @@
 *.bin
+*.coe
 *.lst
 *.rim
 *.swp
 /primes
 /pdp8-out
+/rim2coe

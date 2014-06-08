@@ -10,3 +10,4 @@ if [ $ret -ne 0 ]; then
 fi
 pdp8 print.cmd
 macro8x -d -r print.pal
+./rim2coe print.rim print.coe
