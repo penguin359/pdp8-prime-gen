@@ -6,6 +6,7 @@ start,	cla		/ Load next byte into AC
 	tad I hello
 	sna		/ Check for NUL
 	hlt		/ Halt when done
+	and (177	/ Clear mark parity bit
 	tls		/ Clear flag and send byte: TCF + TPC
 	tsf		/ Wait for byte to be sent
 	jmp .-1
