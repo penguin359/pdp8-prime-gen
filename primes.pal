@@ -191,6 +191,7 @@ pl1,
 	tad I 	index	/ Load next character with auto-increment
 	sna		/ Check for NUL
 	jmp I	prntln	/ Return from subroutine
+	and	(177)	/ Clear parity bit
 	tls		/ Clear flag and send byte: TCF + TPC
 	tsf		/ Wait for byte to be sent
 	jmp	.-1
