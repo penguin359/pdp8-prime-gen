@@ -8,6 +8,6 @@ if [ $ret -ne 0 ]; then
 	cat echo.err >&2
 	exit 1
 fi
-pdp8 echo.cmd
 macro8x -d -r echo.pal
 ./rim2coe echo.rim echo.coe
+pdp8 echo.cmd
