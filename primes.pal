@@ -11,6 +11,7 @@ tmp,	0
 
 *200
 init,
+	jmp start
 	cla
 	tad	(hello)
 	jms	prntln
@@ -69,7 +70,9 @@ nxtld,
 	tad	[7777]
 	dca I	index
 	tad	index		/ Load the row index and
-	cia			/ subtract it from the
+	/cia			/ subtract it from the
+	cma
+	tad	[1]
 	tad	(primes+526-1)	/ address of last bit-field for primes
 	sza
 	jmp	nxtld
@@ -102,7 +105,9 @@ nxtnum,
 	dca	multi
 rstrtmu,
 	tad	num
-	cia			/ two's complement AC
+	/cia			/ two's complement AC
+	cma
+	tad	[1]
 	dca	count
 
 nxtcnt,
@@ -179,7 +184,9 @@ prntnum,	0
 	tad	("0)
 	dca	prntbuf+0
 	tad	prntidx
-	cia
+	/cia
+	cma
+	tad	[1]
 	tad	(prntbuf+3)
 	jms	prntln
 	jmp I	prntnum
