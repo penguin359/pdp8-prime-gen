@@ -8,6 +8,7 @@ index,	0
 
 *20
 tmp,	0
+index2,	0
 
 *200
 init,
@@ -62,14 +63,18 @@ start,
 	tad	(0001)
 	dca	col
 	tad	(primes-1)
-	dca	index
+	dca	index2
 	tad	[7774]
-	dca I	index
+	isz	index2
+	nop
+	dca I	index2
 nxtld,
 	cla
 	tad	[7777]
-	dca I	index
-	tad	index		/ Load the row index and
+	isz	index2
+	nop
+	dca I	index2
+	tad	index2		/ Load the row index and
 	/cia			/ subtract it from the
 	cma
 	tad	[1]
